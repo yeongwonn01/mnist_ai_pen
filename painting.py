@@ -81,20 +81,22 @@ class CView(QGraphicsView):
                 
             # 시작점을 다시 기존 끝점으로
             self.start = e.pos()
-    
+        
     #s 키를 눌렀을 때 화면 캡쳐 저장 후 예측 ( predi() )
     def keyPressEvent(self,e):
         if e.key() == Qt.Key_S:
+            """
             screen = app.primaryScreen()
-            pixmap = screen.grabWindow(0, x+15,y+15,770,470)
+            pixmap = screen.grabWindow( 0,self.frameGeometry().x()+15,self.frameGeometry().y()+15,770,470)
             pixmap.save("check2.png", "PNG")
+            """
+            image = self.grab()
+            image.save("check2.png","png")
             predi()
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     w = CWidget()   
-    x = w.x()
-    y = w.y()
     w.show()
     sys.exit(app.exec_())
