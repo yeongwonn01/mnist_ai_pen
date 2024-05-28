@@ -45,3 +45,6 @@ def predi():
     cv2.imshow("Resulting Image with Rectangular ROIs", im)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    predi()
