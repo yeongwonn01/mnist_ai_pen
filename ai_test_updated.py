@@ -36,10 +36,11 @@ def predi():
         if roi.size != 0:
             roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
             roi = roi.astype('float32') / 255.0  # 스케일링
-            roi = np.expand_dims(roi, axis=-1)  # 채널 추가
-            roi = np.expand_dims(roi, axis=0)   
+            roi = np.expand_dims(roi, axis=-1)  # 맨 뒤에 채널 추가
+            roi = np.expand_dims(roi, axis=0)   # 맨 앞에 채널 추가
             nbr = model.predict(roi)
-            cv2.putText(im, str(np.argmax(nbr[0])), (rect[0], rect[1]), cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255, 0), 3) #검출한 숫자 표시
+            #검출한 숫자 표시
+            cv2.putText(im, str(np.argmax(nbr[0])), (rect[0], rect[1]), cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255, 0), 3) 
 
     #인식 결과 출력
     cv2.imshow("Resulting Image with Rectangular ROIs", im)

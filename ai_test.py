@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 model = load_model('model.h5')
 
 #예측할 이미지 불러오기
-im = cv2.imread("check.png")
+im = cv2.imread("check2.png")
 
 #흑백처리 후 가우시안 블러
 im_gray = cv2.cvtColor(im,cv2.COLOR_BGR2GRAY)
@@ -33,7 +33,8 @@ for rect in rects:
     if (roi.size != 0):
         roi = cv2.resize(roi, ( 28,28), interpolation = cv2.INTER_AREA)
         nbr = model.predict(np.asarray([roi]))
-        cv2.putText(im, str(np.argmax(nbr[0])), (rect[0],rect[1]),cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255,255),3)#검출한 숫자 표시
+        #검출한 숫자 표시
+        cv2.putText(im, str(np.argmax(nbr[0])), (rect[0],rect[1]),cv2.FONT_HERSHEY_DUPLEX, 2, (0, 255,255),3)
 
 #인식 결과 출력
 cv2.imshow("Resulting Image with Rectangular ROIs", im)

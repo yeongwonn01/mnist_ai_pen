@@ -18,33 +18,27 @@ class CWidget(QWidget):
         formbox = QHBoxLayout()
         self.setLayout(formbox)
  
-        # 좌, 우 레이아웃박스
-        left = QVBoxLayout()
-        right = QVBoxLayout()
+        # 레이아웃박스
+        layout = QVBoxLayout()
           
-        # 우 레이아웃 박스에 그래픽 뷰 추가
+        # 레이아웃 박스에 그래픽 뷰 추가
         self.view = CView(self)       
-        right.addWidget(self.view)        
+        layout.addWidget(self.view)        
  
         # 전체 폼박스에 좌우 박스 배치
-        formbox.addLayout(left)
-        formbox.addLayout(right)
+        formbox.addLayout(layout)
  
-        formbox.setStretchFactor(left, 0)
-        formbox.setStretchFactor(right, 1)
+        formbox.setStretchFactor(layout, 1)
          
         self.setGeometry(100, 100, 800, 500) 
  
 class CView(QGraphicsView):
-    
     def __init__(self, parent):
- 
         super().__init__(parent)       
         self.scene = QGraphicsScene()        
         self.setScene(self.scene)
  
         self.items = []
-         
         self.start = QPointF()
         self.end = QPointF()
  
